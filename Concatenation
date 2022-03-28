@@ -1,0 +1,121 @@
+Xml code:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:weightSum="1">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/linearLayout1"
+android:layout_marginLeft="10pt"
+android:layout_marginRight="10pt"
+android:layout_marginTop="3pt">
+<EditText
+android:layout_weight="1"
+android:layout_height="wrap_content"
+android:layout_marginRight="5pt"
+android:id="@+id/etNum1"
+android:layout_width="match_parent"
+android:inputType="text">
+</EditText>
+<EditText
+android:layout_height="wrap_content"
+android:layout_weight="1"
+android:layout_marginLeft="5pt"
+android:id="@+id/etNum2"
+android:layout_width="match_parent"
+android:inputType="text">
+</EditText>
+</LinearLayout>
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/linearLayout2"
+android:layout_marginTop="3pt"
+android:layout_marginLeft="5pt"
+android:layout_marginRight="5pt">
+<Button
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:layout_weight="1"
+android:text="Concatenate"
+android:textSize="8pt"
+android:id="@+id/btnAdd">
+// defines the button that has been clicked and performs the corresponding
+operation
+// write operation into oper, we will use it later for output
+switch (v.getId()) {
+case R.id.btnAdd:
+oper = "+";
+result = num1 + num2;
+break;
+default:
+break;
+}
+// form the output line
+tvResult.setText(num1 + " " + oper + " " + num2 + " = " + result);
+}
+}
+</Button>
+</LinearLayout>
+<TextView
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:layout_marginLeft="5pt"
+android:layout_marginRight="5pt"
+android:textSize="12pt"
+android:layout_marginTop="3pt"
+android:id="@+id/tvResult"
+android:gravity="center_horizontal"
+android:layout_weight="0.07"
+android:textColor="#008000">
+</TextView>
+</LinearLayout>
+
+
+Java code:
+
+package com.example.concatenate;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+public class MainActivity extends AppCompatActivity implements
+View.OnClickListener{
+EditText etNum1;
+EditText etNum2;
+Button btnAdd;
+TextView tvResult;
+String oper = "";
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+etNum1 = (EditText) findViewById(R.id.etNum1);
+etNum2 = (EditText) findViewById(R.id.etNum2);
+btnAdd = (Button) findViewById(R.id.btnAdd);
+tvResult = (TextView) findViewById(R.id.tvResult);
+// set a listener
+btnAdd.setOnClickListener(this);
+}
+@Override
+public void onClick(View v) {
+// TODO Auto-generated method stub
+String num1 = "";
+String num2 = "";
+String result = "";
+// check if the fields are empty
+if (TextUtils.isEmpty(etNum1.getText().toString())
+|| TextUtils.isEmpty(etNum2.getText().toString())) {
+return;
+}
+// read EditText and fill variables with numbers
+num1 = etNum1.getText().toString();
+num2 = etNum2.getText().toString();
