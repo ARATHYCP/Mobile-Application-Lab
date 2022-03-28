@@ -1,3 +1,47 @@
+Java code:
+
+package com.example.concatenate;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+public class MainActivity extends AppCompatActivity implements
+View.OnClickListener{
+EditText etNum1;
+EditText etNum2;
+Button btnAdd;
+TextView tvResult;
+String oper = "";
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+etNum1 = (EditText) findViewById(R.id.etNum1);
+etNum2 = (EditText) findViewById(R.id.etNum2);
+btnAdd = (Button) findViewById(R.id.btnAdd);
+tvResult = (TextView) findViewById(R.id.tvResult);
+// set a listener
+btnAdd.setOnClickListener(this);
+}
+@Override
+public void onClick(View v) {
+// TODO Auto-generated method stub
+String num1 = "";
+String num2 = "";
+String result = "";
+// check if the fields are empty
+if (TextUtils.isEmpty(etNum1.getText().toString())
+|| TextUtils.isEmpty(etNum2.getText().toString())) {
+return;
+}
+// read EditText and fill variables with numbers
+num1 = etNum1.getText().toString();
+num2 = etNum2.getText().toString();
+
+
 Xml code:
 
 <?xml version="1.0" encoding="utf-8"?>
@@ -76,46 +120,3 @@ android:textColor="#008000">
 </TextView>
 </LinearLayout>
 
-
-Java code:
-
-package com.example.concatenate;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-public class MainActivity extends AppCompatActivity implements
-View.OnClickListener{
-EditText etNum1;
-EditText etNum2;
-Button btnAdd;
-TextView tvResult;
-String oper = "";
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-super.onCreate(savedInstanceState);
-setContentView(R.layout.activity_main);
-etNum1 = (EditText) findViewById(R.id.etNum1);
-etNum2 = (EditText) findViewById(R.id.etNum2);
-btnAdd = (Button) findViewById(R.id.btnAdd);
-tvResult = (TextView) findViewById(R.id.tvResult);
-// set a listener
-btnAdd.setOnClickListener(this);
-}
-@Override
-public void onClick(View v) {
-// TODO Auto-generated method stub
-String num1 = "";
-String num2 = "";
-String result = "";
-// check if the fields are empty
-if (TextUtils.isEmpty(etNum1.getText().toString())
-|| TextUtils.isEmpty(etNum2.getText().toString())) {
-return;
-}
-// read EditText and fill variables with numbers
-num1 = etNum1.getText().toString();
-num2 = etNum2.getText().toString();
