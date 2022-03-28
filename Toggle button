@@ -1,0 +1,203 @@
+ACTIVITY_MAIN.XML:
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+tools:context=".MainActivity">
+<com.mca.smiley_button_program_52.FaceView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content" />
+<Button
+android:id="@+id/button"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="---> Sad Face" />
+</RelativeLayout>
+
+
+ACTIVITY_SEC.XML:
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+<com.mca.smiley_button_program_52.FaceView2
+android:layout_width="wrap_content"
+android:layout_height="wrap_content" />
+<Button
+android:id="@+id/button1"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="---> Happy Face" />
+</RelativeLayout>
+
+
+MAIN_ACTIVITY.JAVA:
+
+package com.mca.smiley_button_program_52;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+public class MainActivity extends AppCompatActivity {
+Button button;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+button = (Button) findViewById(R.id.button);
+button.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+openNewActivity();
+}
+});
+}
+public void openNewActivity(){
+Intent intent = new Intent(this,MainActivity2.class);
+startActivity(intent);
+}
+}
+
+
+MAIN_ACTIVITY2.JAVA:
+
+package com.mca.smiley_button_program_52;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import com.mca.smiley_button_program_52.databinding.ActivityMain2Binding;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ui.AppBarConfiguration;
+public class MainActivity2 extends AppCompatActivity {
+Button button1;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_sec);
+button1 = (Button) findViewById(R.id.button1);
+button1.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+openNewActivity();
+}
+});
+}
+public void openNewActivity(){
+Intent intent1 = new Intent(this,MainActivity.class);
+startActivity(intent1);
+}
+}
+
+
+FACEVIEW.JAVA:
+
+package com.mca.smiley_button_program_52;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.util.AttributeSet;
+import android.view.View;
+public class FaceView extends View {
+private Paint paint,p2;
+public FaceView(Context context, AttributeSet attrs) {
+super(context);
+paint = new Paint();
+p2 = new Paint();
+p2.setColor(Color.RED);
+}
+@Override
+protected void onDraw(Canvas canvas) {
+super.onDraw(canvas);
+super.onDraw(canvas);
+int x = getWidth();
+int y = getHeight();
+int radius=500;
+paint.setStyle(Paint.Style.FILL);
+paint.setColor(Color.WHITE);
+paint.setColor(Color.parseColor("#fcba03"));
+canvas.drawCircle(x/2,y/3,radius,paint);
+//1st eye of the smiley
+float x2 = getWidth();
+float y2 = getHeight();
+int radius2=80;
+paint.setStyle(Paint.Style.FILL);
+paint.setColor(Color.WHITE);
+paint.setColor(Color.parseColor("#1D2229"));
+canvas.drawCircle((float) (x2/3.5), (float) (y2/4),radius2,paint);
+//2nd eye of smiley
+int x3 = getWidth();
+int y3 = getHeight();
+//int radius3=50;
+paint.setStyle(Paint.Style.FILL);
+paint.setColor(Color.WHITE);
+paint.setColor(Color.parseColor("#1D2229"));
+canvas.drawCircle((float) (x2/1.5), (float) (y2/4),radius2,paint);
+//mouth
+RectF oval = new RectF(290, 700, 800, 1000);
+canvas.drawArc(oval,0,-180,true,p2);
+}
+}
+
+
+FACEVIEW2.JAVA:
+
+package com.mca.smiley_button_program_52;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.util.AttributeSet;
+import android.view.View;
+public class FaceView2 extends View {
+private Paint paint,p2;
+public FaceView2(Context context, AttributeSet attrs) {
+super(context);
+paint = new Paint();
+p2 = new Paint();
+p2.setColor(Color.GREEN);
+/*super(context, attrs);
+Paint = new Paint();
+Paint.setAntiAlias(true);*/
+}
+@Override
+protected void onDraw(Canvas canvas) {
+super.onDraw(canvas);
+int x = getWidth();
+int y = getHeight();
+int radius=500;
+paint.setStyle(Paint.Style.FILL);
+paint.setColor(Color.WHITE);
+paint.setColor(Color.parseColor("#fcba03"));
+canvas.drawCircle(x/2,y/3,radius,paint);
+//1st eye of the smiley
+float x2 = getWidth();
+float y2 = getHeight();
+int radius2=80;
+paint.setStyle(Paint.Style.FILL);
+paint.setColor(Color.WHITE);
+paint.setColor(Color.parseColor("#1D2229"));
+canvas.drawCircle((float) (x2/3.5), (float)
+(y2/4),radius2,paint);
+//2nd eye of smiley
+int x3 = getWidth();
+int y3 = getHeight();
+//int radius3=50;
+paint.setStyle(Paint.Style.FILL);
+paint.setColor(Color.WHITE);
+paint.setColor(Color.parseColor("#1D2229"));
+canvas.drawCircle((float) (x2/1.5), (float)
+(y2/4),radius2,paint);
+//mouth
+RectF oval = new RectF(200, 500, 850, 1000);
+canvas.drawArc(oval,0,180,true,p2);
+}
+}
